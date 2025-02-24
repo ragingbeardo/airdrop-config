@@ -61,46 +61,50 @@ class Mod implements IPostDBLoadMod {
             lighthouse: "lighthouse"
         };
 
-        for (const type in SptAirdropTypeEnum) {
-            if (SptAirdropTypeEnum[type] !== SptAirdropTypeEnum.RADAR) {
-                if (this.modConfig.toggle.airDropTypeWeightingEnabled) {
-                    airdropConfig.airdropTypeWeightings[SptAirdropTypeEnum[type]] = this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]];
-                    if (this.modConfig.debugLogsEnabled) {
-                        logger.logWithColor(`airdropconfig: Setting airdrop type weight for ${SptAirdropTypeEnum[type]} to ${this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]]}`, LogTextColor.YELLOW);
+        if (this.modConfig.toggle.airDropTypeWeightingEnabled || this.modConfig.toggle.airDropLootConfigEnabled) {
+            for (const type in SptAirdropTypeEnum) {
+                if (SptAirdropTypeEnum[type] !== SptAirdropTypeEnum.RADAR) {
+                    if (this.modConfig.toggle.airDropTypeWeightingEnabled) {
+                        airdropConfig.airdropTypeWeightings[SptAirdropTypeEnum[type]] = this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]];
+                        if (this.modConfig.debugLogsEnabled) {
+                            logger.logWithColor(`airdropconfig: Setting airdrop type weight for ${SptAirdropTypeEnum[type]} to ${this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]]}`, LogTextColor.YELLOW);
+                        }
                     }
-                }
 
-                if (this.modConfig.toggle.airDropLootConfigEnabled) {
-                    if (defaultAirdropIcons[SptAirdropTypeEnum[type]] == this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]].icon) {
-                        airdropConfig.loot[SptAirdropTypeEnum[type]] = this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]];
-                    } else {
-                        logger.logWithColor(`Loot settings not applied for ${SptAirdropTypeEnum[type]}. Ensure icon value is ${defaultAirdropIcons[SptAirdropTypeEnum[type]]}`, LogTextColor.RED);
+                    if (this.modConfig.toggle.airDropLootConfigEnabled) {
+                        if (defaultAirdropIcons[SptAirdropTypeEnum[type]] == this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]].icon) {
+                            airdropConfig.loot[SptAirdropTypeEnum[type]] = this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]];
+                        } else {
+                            logger.logWithColor(`Loot settings not applied for ${SptAirdropTypeEnum[type]}. Ensure icon value is ${defaultAirdropIcons[SptAirdropTypeEnum[type]]}`, LogTextColor.RED);
+                        }
                     }
                 }
             }
         }
 
-        for (const configLocation in locationMapping) {
-            const mappedLocations = locationMapping[configLocation];
-            const locationsArray = Array.isArray(mappedLocations) ? mappedLocations : [mappedLocations];
+        if (this.modConfig.toggle.airDropPercentChanceByLocationEnabled || this.modConfig.toggle.airDropTimingEnabled) {
+            for (const configLocation in locationMapping) {
+                const mappedLocations = locationMapping[configLocation];
+                const locationsArray = Array.isArray(mappedLocations) ? mappedLocations : [mappedLocations];
 
-            for (const location of locationsArray) {
-                if (!ignoredLocations.includes(location)) {
-                    if (this.modConfig.toggle.airDropPercentChanceByLocationEnabled) {
-                        locations[location].base.AirdropParameters[0].PlaneAirdropChance = parseFloat((this.modConfig.airdropPercentChanceByLocation[configLocation] / 100).toFixed(2));
-                        if (this.modConfig.debugLogsEnabled) {
-                            logger.logWithColor(`airdropconfig: Setting airdrop chance for ${location} to ${this.modConfig.airdropPercentChanceByLocation[configLocation]}%`, LogTextColor.YELLOW);
+                for (const location of locationsArray) {
+                    if (!ignoredLocations.includes(location)) {
+                        if (this.modConfig.toggle.airDropPercentChanceByLocationEnabled) {
+                            locations[location].base.AirdropParameters[0].PlaneAirdropChance = parseFloat((this.modConfig.airdropPercentChanceByLocation[configLocation] / 100).toFixed(2));
+                            if (this.modConfig.debugLogsEnabled) {
+                                logger.logWithColor(`airdropconfig: Setting airdrop chance for ${location} to ${this.modConfig.airdropPercentChanceByLocation[configLocation]}%`, LogTextColor.YELLOW);
+                            }
                         }
-                    }
 
-                    if (this.modConfig.toggle.airDropTimingEnabled) {
-                        locations[location].base.AirdropParameters[0].PlaneAirdropStartMin = this.modConfig.airdropTiming["planeAirdropStartMin"];
-                        if (this.modConfig.debugLogsEnabled) {
-                            logger.logWithColor(`airdropconfig: Setting airdrop start min for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMin"]}`, LogTextColor.YELLOW);
-                        }
-                        locations[location].base.AirdropParameters[0].PlaneAirdropStartMax = this.modConfig.airdropTiming["planeAirdropStartMax"];
-                        if (this.modConfig.debugLogsEnabled) {
-                            logger.logWithColor(`airdropconfig: Setting airdrop start max for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMax"]}`, LogTextColor.YELLOW);
+                        if (this.modConfig.toggle.airDropTimingEnabled) {
+                            locations[location].base.AirdropParameters[0].PlaneAirdropStartMin = this.modConfig.airdropTiming["planeAirdropStartMin"];
+                            if (this.modConfig.debugLogsEnabled) {
+                                logger.logWithColor(`airdropconfig: Setting airdrop start min for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMin"]}`, LogTextColor.YELLOW);
+                            }
+                            locations[location].base.AirdropParameters[0].PlaneAirdropStartMax = this.modConfig.airdropTiming["planeAirdropStartMax"];
+                            if (this.modConfig.debugLogsEnabled) {
+                                logger.logWithColor(`airdropconfig: Setting airdrop start max for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMax"]}`, LogTextColor.YELLOW);
+                            }
                         }
                     }
                 }
