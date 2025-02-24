@@ -1,4 +1,5 @@
 {
+    debugLogsEnabled: false,
     airdropTiming: {
         planeAirdropStartMin: 300,
         planeAirdropStartMax: 900,
