@@ -11,14 +11,14 @@
         barter: 1
     },
     airdropPercentChanceByLocation: {
-        customs: 100,
-        interchange: 100,
-        woods: 100,
-        shoreline: 100,
-        reserve: 100,
-        groundzero: 100,
-        streets: 100,
-        lighthouse: 100
+        customs: 25,
+        interchange: 25,
+        woods: 25,
+        shoreline: 25,
+        reserve: 25,
+        groundzero: 25,
+        streets: 25,
+        lighthouse: 25
     },
     airdropLootConfig: {
         mixed: {
