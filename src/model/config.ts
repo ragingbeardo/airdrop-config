@@ -5,6 +5,7 @@ interface Toggle {
     airDropTypeWeightingEnabled: boolean;
     airDropPercentChanceByLocationEnabled: boolean;
     airDropLootConfigEnabled: boolean;
+    amendDontReplace: boolean;
 }
 
 interface Config {
