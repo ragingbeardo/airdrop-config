@@ -10,6 +10,9 @@ This mod allows you to customize the configuration of airdrops in Escape from Ta
 
 ## Configuration
 
+### Debug
+`debugLogsEnabled`: true/false for some basic logging. false by default
+
 ### Airdrop Timing
 
 - `planeAirdropStartMin`: Minimum time (in seconds) before the airdrop plane appears.
