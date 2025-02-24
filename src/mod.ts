@@ -75,7 +75,7 @@ class Mod implements IPostDBLoadMod {
                         if (defaultAirdropIcons[SptAirdropTypeEnum[type]] == this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]].icon) {
                             airdropConfig.loot[SptAirdropTypeEnum[type]] = this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]];
                         } else {
-                            logger.logWithColor(`Loot settings not applied for ${SptAirdropTypeEnum[type]}. Ensure icon value is ${defaultAirdropIcons[SptAirdropTypeEnum[type]]}`, LogTextColor.RED);
+                            logger.logWithColor(`airdropconfig: Loot settings not applied for ${SptAirdropTypeEnum[type]}. Ensure icon value is ${defaultAirdropIcons[SptAirdropTypeEnum[type]]}`, LogTextColor.RED);
                         }
                     }
                 }
