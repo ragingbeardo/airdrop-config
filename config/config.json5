@@ -1,4 +1,8 @@
 {
+    airdropTiming: {
+        planeAirdropStartMin: 300,
+        planeAirdropStartMax: 900,
+    },
     airdropTypeWeightings: {
         mixed: 5,
         weaponArmor: 4,
@@ -17,6 +21,7 @@
     },
     airdropLootConfig: {
         mixed: {
+            icon: "Common",
             "weaponPresetCount": {
                 "min": 3,
                 "max": 5
@@ -118,6 +123,7 @@
             "allowBossItems": false
         },
         weaponArmor: {
+            icon: "Weapon",
             "weaponPresetCount": {
                 "min": 6,
                 "max": 8
@@ -190,6 +196,7 @@
             "allowBossItems": false
         },
         foodMedical: {
+            icon: "Medical",
             "weaponPresetCount": {
                 "min": 0,
                 "max": 0
@@ -270,6 +277,7 @@
             "allowBossItems": false
         },
         barter: {
+            icon: "Supply",
             "weaponPresetCount": {
                 "min": 0,
                 "max": 0

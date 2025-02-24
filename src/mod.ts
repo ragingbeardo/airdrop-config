@@ -53,7 +53,7 @@ class Mod implements IPostDBLoadMod {
 
         for (const type in SptAirdropTypeEnum) {
             if (SptAirdropTypeEnum[type] !== SptAirdropTypeEnum.RADAR) {
-                airdropConfig.airdropTypeWeightings[SptAirdropTypeEnum[type]] = this.modConfig.airdropTypeWeightings[SptAirdropTypeEnum[type]];
+                airdropConfig.airdropTypeWeightings[SptAirdropTypeEnum[type]] = this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]];
                 airdropConfig.loot[SptAirdropTypeEnum[type]] = this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]];
             }
         }
@@ -65,6 +65,8 @@ class Mod implements IPostDBLoadMod {
             for (const location of locationsArray) {
                 if (!ignoredLocations.includes(location)) {
                     locations[location].base.AirdropParameters[0].PlaneAirdropChance = parseFloat((this.modConfig.airdropPercentChanceByLocation[configLocation] / 100).toFixed(2));
+                    locations[location].base.AirdropParameters[0].planeAirdropStartMin = this.modConfig.airdropTimings["planeAirdropStartMin"];
+                    locations[location].base.AirdropParameters[0].planeAirdropStartMax = this.modConfig.airdropTimings["planeAirdropStartMax"];
                 }
             }
         }
