@@ -5,7 +5,7 @@
         airDropTypeWeightingEnabled: false,
         airDropPercentChanceByLocationEnabled: false,
         airDropLootConfigEnabled: false,
-        amendDontReplace: false
+        replaceLists: true
     },
     airdropTiming: {
         planeAirdropStartMin: 300,
