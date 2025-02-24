@@ -1,5 +1,11 @@
 {
     debugLogsEnabled: false,
+    toggle: {
+        airDropTimingEnabled: false,
+        airDropTypeWeightingEnabled: false,
+        airDropPercentChanceByLocationEnabled: false,
+        airDropLootConfigEnabled: false
+    },
     airdropTiming: {
         planeAirdropStartMin: 300,
         planeAirdropStartMax: 900,

@@ -11,7 +11,15 @@ This mod allows you to customize the configuration of airdrops in Escape from Ta
 ## Configuration
 
 ### Debug
-`debugLogsEnabled`: true/false for some basic logging. false by default
+
+`debugLogsEnabled`: true/false (default false)
+
+### Toggle
+
+- `airDropTimingEnabled`: true/false (default false),
+- `airDropTypeWeightingEnabled`: true/false (default false),
+- `airDropPercentChanceByLocationEnabled`: true/false (default false),
+- `airDropLootConfigEnabled`: true/false (default false)
 
 ### Airdrop Timing
 
