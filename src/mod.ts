@@ -65,8 +65,8 @@ class Mod implements IPostDBLoadMod {
             for (const location of locationsArray) {
                 if (!ignoredLocations.includes(location)) {
                     locations[location].base.AirdropParameters[0].PlaneAirdropChance = parseFloat((this.modConfig.airdropPercentChanceByLocation[configLocation] / 100).toFixed(2));
-                    locations[location].base.AirdropParameters[0].planeAirdropStartMin = this.modConfig.airdropTimings["planeAirdropStartMin"];
-                    locations[location].base.AirdropParameters[0].planeAirdropStartMax = this.modConfig.airdropTimings["planeAirdropStartMax"];
+                    locations[location].base.AirdropParameters[0].PlaneAirdropStartMin = this.modConfig.airdropTimings["planeAirdropStartMin"];
+                    locations[location].base.AirdropParameters[0].PlaneAirdropStartMax = this.modConfig.airdropTimings["planeAirdropStartMax"];
                 }
             }
         }
