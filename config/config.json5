@@ -3,7 +3,7 @@
         planeAirdropStartMin: 300,
         planeAirdropStartMax: 900,
     },
-    airdropTypeWeightings: {
+    airdropTypeWeighting: {
         mixed: 5,
         weaponArmor: 4,
         foodMedical: 1,
