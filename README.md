@@ -1,66 +1,62 @@
-# Welcome to the SPT Modding Project
+# Tarkov Airdrop Configuration Mod
 
-This project is designed to streamline the initial setup process for building and creating mods in the SPT environment. Follow this guide to set up your environment efficiently.
+This mod allows you to customize the configuration of airdrops in Escape from Tarkov using the `config.json5` file. You can adjust various parameters such as the timing, type weightings, and loot content of airdrops.
 
-## **Table of Contents**
-- [NodeJS Setup](#nodejs-setup)
-- [IDE Setup](#ide-setup)
-- [Workspace Configuration](#workspace-configuration)
-- [Environment Setup](#environment-setup)
-- [Essential Concepts](#essential-concepts)
-- [Coding Guidelines](#coding-guidelines)
-- [Distribution Guidelines](#distribution-guidelines)
+## Installation
 
-## **NodeJS Setup**
+1. Download the zip file and extract it.
+2. Copy the `user` folder into your SPT directory.
+3. Ensure the `config.json5` file is located in the `config` folder of `ragingbeardo-airdropconfig` in your `user/mods` directory.
 
-Before you begin, ensure to install NodeJS version `v20.11.1`, which has been tested thoroughly with our mod templates and build scripts. Download it from the [official NodeJS website](https://nodejs.org/).
+## Configuration
 
-After installation, it's advised to reboot your system.
+### Airdrop Timing
 
-## **IDE Setup**
+- `planeAirdropStartMin`: Minimum time (in seconds) before the airdrop plane appears.
+- `planeAirdropStartMax`: Maximum time (in seconds) before the airdrop plane appears.
 
-For this project, you can work with either [VSCodium](https://vscodium.com/) or [VSCode](https://code.visualstudio.com/). However, we strongly recommend using VSCode, as all development and testing have been carried out using this IDE, ensuring a smoother experience and compatibility with the project setups. Either way, we have a prepared a workspace file to assist you in setting up your environment.
+### Airdrop Type Weighting
 
-## **Workspace Configuration**
+I'm gonna keep it 100 and say I can't tell you how exactly the weightings work, but the default ratings are the same as base SPTarkov settings.
 
-With NodeJS and your chosen IDE ready, initiate the `mod.code-workspace` file using your IDE:
+- `mixed`: number
+- `weaponArmor`: number
+- `foodMedical`: number
+- `barter`: number
 
-> File -> Open Workspace from File...
+### Airdrop Percent Chance by Location
 
-Upon project loading, consider installing recommended plugins like the ESLint plugin.
+Set the chance (out of 100) for an airdrop to occur at each location:
 
-## **Environment Setup**
+- `customs`: number
+- `interchange`: number
+- `woods`: number
+- `shoreline`: number
+- `reserve`: number
+- `groundzero`: number
+- `streets`: number
+- `lighthouse`: number
 
-An automated task is available to configure your environment for Typescript utilization:
+### Airdrop Loot Configuration
 
-> Terminal -> Run Task... -> Show All Tasks... -> npm: install
+This setting has a large amount of configuration to do. The default state is the same as base SPTarkov. Some fields like armorWHitelist are still unknown as to how it actually works to me. 
 
-Note: Preserve the `node_modules` folder as it contains necessary dependencies for Typescript and other functionalities.
+Airdrop Types:
+- `mixed`
+- `weaponArmor`
+- `foodMedical`
+- `barter`
 
-## **Essential Concepts**
+Each loot configuration can include the following parameters:
 
-Prioritize understanding Dependency Injection and Inversion of Control, the architectural principles SPT adopts. Comprehensive guidelines will be available on the hub upon release.
-
-Some resources to get you started:
- - [A quick intro to Dependency Injection](https://www.freecodecamp.org/news/a-quick-intro-to-dependency-injection-what-it-is-and-when-to-use-it-7578c84fa88f/)
- - [Understanding Inversion of Control (IoC) Principle](https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163b1dc97454)
-
-## **Coding Guidelines**
-
-Focus your mod development around the `mod.ts` file. In the `package.json` file, only alter these properties: `"name"`, `"version"`, `"sptVersion"`, `"loadBefore"`, `"loadAfter"`, `"incompatibilities"`, `"isBundleMod"`, `"author"`, and `"license"`.
-
-New to Typescript? Find comprehensive documentation on the [official website](https://www.typescriptlang.org/docs/).
-
-## **Distribution Guidelines**
-
-Automated tasks are set up to bundle all necessary files for your mod to function in SPT:
-
-> Terminal -> Run Task... -> Show All Tasks... -> npm: build
-
-The ZIP output, located in the `dist` directory, contains all required files. Ensure all files are included and modify the `.buildignore` file as needed. This ZIP file is your uploadable asset for the hub.
-
-## **Conclusion**
-
-With this setup, you're ready to begin modding with SPT. If you run into any trouble be sure to check out the [modding documentation on the hub](https://hub.sp-tarkov.com/doc/lexicon/66-modding/). If you really get stuck feel free to join us in the [#mods-development](https://discord.com/channels/875684761291599922/875803116409323562) official Discord channel.
-
-Build something awesome!
+- `icon`: NO TOUCHY, this exists to match default config but you shouldn't need to change this
+- `weaponPresetCount`: number range
+- `armorPresetCount`: number range
+- `itemCount`: number range
+- `weaponCrateCount`: number range
+- `itemBlacklist`: blacklist using id
+- `itemTypeWhiteList`: whitelist using id
+- `itemLimits`: set limit based on item id
+- `itemStackLimits`: set limit based on item id
+- `armorWhiteList`: still trying to figure out the explanation for this one
+- `allowBossItems`: true/false
