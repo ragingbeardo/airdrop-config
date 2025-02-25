@@ -40,3 +40,5 @@ out/
 
 # Environment variables
 .env
+
+scratchpad/
