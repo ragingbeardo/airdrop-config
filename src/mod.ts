@@ -191,7 +191,6 @@ class Mod implements IPostDBLoadMod {
                             this.loggingUtil.debugYellow(`airdropconfig: Setting airdrop start min for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMin"]}`);
                             locations[location].base.AirdropParameters[0].PlaneAirdropStartMax = this.modConfig.airdropTiming["planeAirdropStartMax"];
                             this.loggingUtil.debugYellow(`Setting airdrop start max for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMax"]}`);
-                            }
                         }
                     }
                 }
