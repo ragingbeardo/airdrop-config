@@ -119,7 +119,7 @@ class Mod implements IPostDBLoadMod {
             return combinedObj;
         }
 
-        function mergeLootConfiguration(baseLootConfigForType: IAirdropLoot, modLootConfigForType: IAirdropLoot) {
+        function mergeLootConfiguration(baseLootConfigForType: IAirdropLoot, modLootConfigForType: IAirdropLoot, loggingUtil: LoggingUtil): void {
             for (const field in modLootConfigForType) {
                 if (field !== "icon") {
                     if (lootConfigListsToAmend.includes(field)) {
@@ -127,8 +127,23 @@ class Mod implements IPostDBLoadMod {
                         const modLootConfig = modLootConfigForType[field];
                         if (validateFunctions[field](modLootConfig)) {
                             baseLootConfigForType[field] = combineListsFunctions[field](baseLootConfig, modLootConfig);
+
+                            // Additional logic to handle blacklist and whitelist conflicts
+                            if (field === "itemBlacklist") {
+                                // Remove blacklisted items from itemTypeWhitelist
+                                if (baseLootConfigForType["itemTypeWhitelist"]) {
+                                    baseLootConfigForType["itemTypeWhitelist"] = baseLootConfigForType["itemTypeWhitelist"].filter((item: any) => !modLootConfig.includes(item));
+                                    loggingUtil.debugYellow(`new whitelist is ${baseLootConfigForType["itemTypeWhitelist"]}`);
+                                }
+                            } else if (field === "itemTypeWhitelist") {
+                                // Remove whitelisted items from itemBlacklist
+                                if (baseLootConfigForType["itemBlacklist"]) {
+                                    baseLootConfigForType["itemBlacklist"] = baseLootConfigForType["itemBlacklist"].filter((item: any) => !modLootConfig.includes(item));
+                                    loggingUtil.debugYellow(`new blacklist is ${baseLootConfigForType["itemBlacklist"]}`);
+                                }
+                            }
                         } else {
-                            this.loggingUtil.red(`Invalid type for field ${field}`)
+                            this.loggingUtil.red(`Invalid type for field ${field}`);
                         }
                     } else {
                         baseLootConfigForType[field] = modLootConfigForType[field];
@@ -142,19 +157,17 @@ class Mod implements IPostDBLoadMod {
                 if (SptAirdropTypeEnum[type] !== SptAirdropTypeEnum.RADAR) {
                     if (this.modConfig.toggle.airDropTypeWeightingEnabled) {
                         airdropConfig.airdropTypeWeightings[SptAirdropTypeEnum[type]] = this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]];
-                        if (this.modConfig.debugLogsEnabled) {
-                            this.loggingUtil.yellow(`Setting airdrop type weight for ${SptAirdropTypeEnum[type]} to ${this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]]}`)
-                        }
+                        this.loggingUtil.debugYellow(`Setting airdrop type weight for ${SptAirdropTypeEnum[type]} to ${this.modConfig.airdropTypeWeighting[SptAirdropTypeEnum[type]]}`);
                     }
 
                     if (this.modConfig.toggle.airDropLootConfigEnabled) {
                         if (this.modConfig.toggle.replaceLists) {
-                            this.loggingUtil.debugYellow(`Replacing loot configuration for ${SptAirdropTypeEnum[type]}`)
+                            this.loggingUtil.debugYellow(`Replacing loot configuration for ${SptAirdropTypeEnum[type]}`);
                             this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]].icon = defaultAirdropIcons[SptAirdropTypeEnum[type]];
                             airdropConfig.loot[SptAirdropTypeEnum[type]] = this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]];
                         } else {
-                            this.loggingUtil.debugYellow(`Merging loot configuration for ${SptAirdropTypeEnum[type]}`)
-                            mergeLootConfiguration(airdropConfig.loot[SptAirdropTypeEnum[type]], this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]]);
+                            this.loggingUtil.debugYellow(`Merging loot configuration for ${SptAirdropTypeEnum[type]}`);
+                            mergeLootConfiguration(airdropConfig.loot[SptAirdropTypeEnum[type]], this.modConfig.airdropLootConfig[SptAirdropTypeEnum[type]], this.loggingUtil);
                         }
                     }
                 }
@@ -170,19 +183,14 @@ class Mod implements IPostDBLoadMod {
                     if (!ignoredLocations.includes(location)) {
                         if (this.modConfig.toggle.airDropPercentChanceByLocationEnabled) {
                             locations[location].base.AirdropParameters[0].PlaneAirdropChance = parseFloat((this.modConfig.airdropPercentChanceByLocation[configLocation] / 100).toFixed(2));
-                            if (this.modConfig.debugLogsEnabled) {
-                                this.loggingUtil.debugYellow(`airdropconfig: Setting airdrop chance for ${location} to ${this.modConfig.airdropPercentChanceByLocation[configLocation]}%`)
-                            }
+                            this.loggingUtil.debugYellow(`airdropconfig: Setting airdrop chance for ${location} to ${this.modConfig.airdropPercentChanceByLocation[configLocation]}%`);
                         }
 
                         if (this.modConfig.toggle.airDropTimingEnabled) {
                             locations[location].base.AirdropParameters[0].PlaneAirdropStartMin = this.modConfig.airdropTiming["planeAirdropStartMin"];
-                            if (this.modConfig.debugLogsEnabled) {
-                                this.loggingUtil.debugYellow(`airdropconfig: Setting airdrop start min for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMin"]}`)
-                            }
+                            this.loggingUtil.debugYellow(`airdropconfig: Setting airdrop start min for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMin"]}`);
                             locations[location].base.AirdropParameters[0].PlaneAirdropStartMax = this.modConfig.airdropTiming["planeAirdropStartMax"];
-                            if (this.modConfig.debugLogsEnabled) {
-                                this.loggingUtil.debugYellow(`Setting airdrop start max for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMax"]}`)
+                            this.loggingUtil.debugYellow(`Setting airdrop start max for ${location} to ${this.modConfig.airdropTiming["planeAirdropStartMax"]}`);
                             }
                         }
                     }

@@ -33,11 +33,11 @@ export class LoggingUtil {
 
     public debugYellow(message: string) : void
     {
-        this.logger.log(`[Airdrop Config Options]: ${message}`, LogTextColor.YELLOW);
+        if (this.debugMode) this.logger.log(`[Airdrop Config Options]: ${message}`, LogTextColor.YELLOW);
     }
 
     public debugRed(message: string) : void
     {
-        this.logger.log(`[Airdrop Config Options]: ${message}`, LogTextColor.RED);
+        if (this.debugMode) this.logger.log(`[Airdrop Config Options]: ${message}`, LogTextColor.RED);
     }
 }
