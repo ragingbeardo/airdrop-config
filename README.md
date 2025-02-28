@@ -28,7 +28,7 @@ This mod allows you to customize the configuration of airdrops in Escape from Ta
 
 ### Airdrop Type Weighting
 
-I'm gonna keep it 100 and say I can't tell you how exactly the weightings work, but the default ratings are the same as base SPTarkov settings.
+Go with heart on this one. Bigger Number = Bigger Odds. Or just leave it be. I'm not your supervisor.
 
 - `mixed`: number
 - `weaponArmor`: number
@@ -44,15 +44,13 @@ Set the chance (out of 100) for an airdrop to occur at each location:
 - `woods`: number
 - `shoreline`: number
 - `reserve`: number
-- `groundzero`: number
+- `groundzero`: number (no drops on low level ground zero)
 - `streets`: number
 - `lighthouse`: number
 
 ### Airdrop Loot Configuration
 
-This setting has a large amount of configuration to do. The default state is the same as base SPTarkov. Some fields like armorWHitelist are still unknown as to how it actually works to me. 
-
-Airdrop Types:
+Loot config split by airdrop types:
 - `mixed`
 - `weaponArmor`
 - `foodMedical`
@@ -60,14 +58,13 @@ Airdrop Types:
 
 Each loot configuration can include the following parameters:
 
-- `icon`: NO TOUCHY, this exists to match default config but you shouldn't need to change this
-- `weaponPresetCount`: number range
-- `armorPresetCount`: number range
-- `itemCount`: number range
-- `weaponCrateCount`: number range
-- `itemBlacklist`: blacklist using id
-- `itemTypeWhiteList`: whitelist using id
-- `itemLimits`: set limit based on item id
-- `itemStackLimits`: set limit based on item id
-- `armorWhiteList`: still trying to figure out the explanation for this one
-- `allowBossItems`: true/false
+- `weaponPresetCount`: number range of weapons that can be in the drop
+- `armorPresetCount`: number range of armors(helmets/vests) that can appear in the drop
+- `itemCount`: general item amount showing up
+- `weaponCrateCount`: number range of weapon crates that can be in the drop
+- `itemBlacklist`: an ID list of things you don't want showing up
+- `itemTypeWhiteList`: if this list is empty, you will only get items from the weapon, armor, and crate count items
+- `itemLimits`: a numerical limit for a specific ID
+- `itemStackLimits`: a numerical range for a specific ID
+- `armorWhiteList`: armorLevelWhitelist: what level of armor can show up (as far as i could tell i think 0 is the same as nothing) [0,1,2,3,4,5,6]
+- `allowBossItems`: I think you can understand this one on your own (haven't tested yet, might still needs id whitelisting to actually show up but can't say for sure)

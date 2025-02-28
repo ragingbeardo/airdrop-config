@@ -1,34 +1,46 @@
 {
-    debugLogsEnabled: false,
-    toggle: {
-        airDropTimingEnabled: false,
-        airDropTypeWeightingEnabled: false,
-        airDropPercentChanceByLocationEnabled: false,
-        airDropLootConfigEnabled: false,
-        replaceLists: true
+    "debugLogsEnabled": false,
+    "toggle": {
+        "airDropTimingEnabled": false,
+        "airDropTypeWeightingEnabled": false,
+        "airDropPercentChanceByLocationEnabled": false,
+        "airDropLootConfigEnabled": false,
+        "replaceLists": true
     },
-    airdropTiming: {
-        planeAirdropStartMin: 300,
-        planeAirdropStartMax: 900,
+    "airdropTiming": {
+        "planeAirdropStartMin": 300,
+        "planeAirdropStartMax": 900
     },
-    airdropTypeWeighting: {
-        mixed: 5,
-        weaponArmor: 4,
-        foodMedical: 1,
-        barter: 1
+    "airdropTypeWeighting": {
+        "mixed": 5,
+        "weaponArmor": 4,
+        "foodMedical": 1,
+        "barter": 1
     },
-    airdropPercentChanceByLocation: {
-        customs: 25,
-        interchange: 25,
-        woods: 25,
-        shoreline: 25,
-        reserve: 25,
-        groundzero: 25,
-        streets: 25,
-        lighthouse: 25
+    "airdropPercentChanceByLocation": {
+        "customs": 25,
+        "interchange": 25,
+        "woods": 25,
+        "shoreline": 25,
+        "reserve": 25,
+        "streets": 25,
+        "lighthouse": 25
     },
-    airdropLootConfig: {
-        mixed: {
+    /**
+    * Explanations
+    * weaponPresetCount: number range of weapons that can be in the drop
+    * armorPresetCount: number range of armors(helmets/vests) that can appear in the drop
+    * itemCount: general item amount showing up
+    * weaponCrateCount: number range of weapon crates that can be in the drop
+    * itemBlacklist: an ID list of things you don't want showing up
+    * itemTypeWhitelist: if this list is empty, you will only get items from the weapon, armor, and crate count items
+    * itemLimits: a numerical limit for a specific ID
+    * itemStackLimits: a numerical range for a specific ID
+    * armorLevelWhitelist: what level of armor can show up (as far as i could tell i think 0 is the same as nothing) [0,1,2,3,4,5,6]
+    * allowBossItems: i think you can understand this one on your own (haven't tested yet, probably still needs id whitelisting to actually show up but can't say for sure)
+    */
+    "airdropLootConfig": {
+        "mixed": {
             "weaponPresetCount": {
                 "min": 3,
                 "max": 5
@@ -129,7 +141,7 @@
             "armorLevelWhitelist": [0, 4, 5, 6],
             "allowBossItems": false
         },
-        weaponArmor: {
+        "weaponArmor": {
             "weaponPresetCount": {
                 "min": 6,
                 "max": 8
@@ -201,7 +213,7 @@
             "armorLevelWhitelist": [0, 3, 4, 5, 6],
             "allowBossItems": false
         },
-        foodMedical: {
+        "foodMedical": {
             "weaponPresetCount": {
                 "min": 0,
                 "max": 0
@@ -281,7 +293,7 @@
             "armorLevelWhitelist": [0],
             "allowBossItems": false
         },
-        barter: {
+        "barter": {
             "weaponPresetCount": {
                 "min": 0,
                 "max": 0
