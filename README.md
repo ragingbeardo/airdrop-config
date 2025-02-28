@@ -44,7 +44,6 @@ Set the chance (out of 100) for an airdrop to occur at each location:
 - `woods`: number
 - `shoreline`: number
 - `reserve`: number
-- `groundzero`: number (no drops on low level ground zero)
 - `streets`: number
 - `lighthouse`: number
 
