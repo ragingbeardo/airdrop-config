@@ -28,7 +28,7 @@ This mod allows you to customize the configuration of airdrops in Escape from Ta
 
 ### Airdrop Type Weighting
 
-Go with heart on this one. Bigger Number = Bigger Odds. Or just leave it be. I'm not your supervisor.
+Go with heart on this one. Bigger Number = Bigger Odds (compared to each other). Or just leave it be. I'm not your supervisor.
 
 - `mixed`: number
 - `weaponArmor`: number
@@ -65,5 +65,5 @@ Each loot configuration can include the following parameters:
 - `itemTypeWhiteList`: if this list is empty, you will only get items from the weapon, armor, and crate count items
 - `itemLimits`: a numerical limit for a specific ID
 - `itemStackLimits`: a numerical range for a specific ID
-- `armorWhiteList`: armorLevelWhitelist: what level of armor can show up (as far as i could tell i think 0 is the same as nothing) [0,1,2,3,4,5,6]
+- `armorWhiteList`: what level of armor can show up (as far as i could tell i think 0 is the same as nothing) [0,1,2,3,4,5,6]
 - `allowBossItems`: I think you can understand this one on your own (haven't tested yet, might still needs id whitelisting to actually show up but can't say for sure)
