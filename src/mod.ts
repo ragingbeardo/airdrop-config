@@ -49,7 +49,9 @@ class Mod implements IPostDBLoadMod {
             "suburbs",
             "terminal",
             "town",
-            "base"
+            "base",
+            "sandbox",
+            "sandbox_high"
         ];
 
         const locationMapping = {
@@ -58,7 +60,6 @@ class Mod implements IPostDBLoadMod {
             woods: "woods",
             shoreline: "shoreline",
             reserve: "rezervbase",
-            groundzero: ["sandbox", "sandbox_high"],
             streets: "tarkovstreets",
             lighthouse: "lighthouse"
         };
